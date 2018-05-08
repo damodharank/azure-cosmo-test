@@ -1,14 +1,14 @@
 var config = {}
 
-config.endpoint = "~your DocumentDB endpoint uri here~";
-config.primaryKey = "~your primary key here~";
+config.endpoint = "https://demo-cosmos-db.documents.azure.com:443/";
+config.primaryKey = "WcwO4FTDSdELaG67C73Q6mYcMJXAzIiCDYrO0VAuBmIM3dBIkrh7QAxuZiCfhAqfzrDOPBxgaSnwTqjEjt0mZw==";
 
 config.database = {
-    "id": "FamilyDB"
+    "id": "appadmin"
 };
 
 config.collection = {
-    "id": "FamilyColl"
+    "id": "users"
 };
 
 config.documents = {

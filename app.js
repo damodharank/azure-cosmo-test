@@ -16,7 +16,6 @@ var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
  */
 function getDatabase() {
     console.log(`Getting database:\n${config.database.id}\n`);
-
     return new Promise((resolve, reject) => {
         client.readDatabase(databaseUrl, (err, result) => {
             if (err) {
@@ -94,7 +93,7 @@ function queryCollection() {
     return new Promise((resolve, reject) => {
         client.queryDocuments(
             collectionUrl,
-            'SELECT VALUE r.children FROM root r WHERE r.lastName = "Andersen"'
+            'SELECT * FROM c'
         ).toArray((err, results) => {
             if (err) reject(err)
             else {
@@ -171,15 +170,11 @@ function exit(message) {
     process.stdin.resume();
     process.stdin.on('data', process.exit.bind(process, 0));
 }
-
 getDatabase()
     .then(() => getCollection())
-    .then(() => getFamilyDocument(config.documents.Andersen))
-    .then(() => getFamilyDocument(config.documents.Wakefield))
     .then(() => queryCollection())
-    .then(() => replaceFamilyDocument(config.documents.Andersen))
-    .then(() => queryCollection())
-    .then(() => deleteFamilyDocument(config.documents.Andersen))
-    .then(() => cleanup())
+    .then(() => console.log(" Delete area..."))
+    .then(() => console.log("Cleanup area..."))
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
+
